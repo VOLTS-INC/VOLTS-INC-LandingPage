@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Matte black surfaces (near-neutral, faint cool hue) */
+    --background: 0.12 0.008 260;
+    --foreground: 0.92 0.01 260;
+    --card: 0.16 0.012 260;
+    --card-foreground: 0.92 0.01 260;
+    --popover: 0.16 0.012 260;
+    --popover-foreground: 0.92 0.01 260;
+
+    /* Electric volt green accent */
+    --primary: 0.82 0.19 145;
+    --primary-foreground: 0.12 0.008 260;
+    --secondary: 0.2 0.015 260;
+    --secondary-foreground: 0.85 0.01 260;
+    --muted: 0.2 0.015 260;
+    --muted-foreground: 0.52 0.012 260;
+    --accent: 0.82 0.19 145;
+    --accent-foreground: 0.12 0.008 260;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.95 0.01 25;
+    --success: 0.65 0.18 145;
+    --warning: 0.75 0.15 85;
+
+    --border: 0.26 0.02 260;
+    --input: 0.26 0.02 260;
+    --ring: 0.82 0.19 145;
+
+    /* Chart palette */
+    --chart-1: 0.82 0.19 145;
+    --chart-2: 0.7 0.14 260;
+    --chart-3: 0.6 0.12 300;
+    --chart-4: 0.75 0.12 85;
+    --chart-5: 0.65 0.15 190;
+
+    /* Sidebar */
+    --sidebar: 0.14 0.01 260;
+    --sidebar-foreground: 0.9 0.01 260;
+    --sidebar-primary: 0.82 0.19 145;
+    --sidebar-primary-foreground: 0.12 0.008 260;
+    --sidebar-accent: 0.2 0.015 260;
+    --sidebar-accent-foreground: 0.9 0.01 260;
+    --sidebar-border: 0.26 0.02 260;
+    --sidebar-ring: 0.82 0.19 145;
+
+    /* Typography */
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "General Sans", system-ui, sans-serif;
+    --font-mono: "Geist Mono", monospace;
+
+    /* Radius */
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.82 0.19 145),
+      oklch(0.72 0.16 165)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.16 0.012 260),
+      oklch(0.12 0.008 260)
+    );
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0.12 0.008 260;
+    --foreground: 0.92 0.01 260;
+    --card: 0.16 0.012 260;
+    --card-foreground: 0.92 0.01 260;
+    --popover: 0.16 0.012 260;
+    --popover-foreground: 0.92 0.01 260;
+    --primary: 0.82 0.19 145;
+    --primary-foreground: 0.12 0.008 260;
+    --secondary: 0.2 0.015 260;
+    --secondary-foreground: 0.85 0.01 260;
+    --muted: 0.2 0.015 260;
+    --muted-foreground: 0.52 0.012 260;
+    --accent: 0.82 0.19 145;
+    --accent-foreground: 0.12 0.008 260;
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.95 0.01 25;
+    --success: 0.65 0.18 145;
+    --warning: 0.75 0.15 85;
+    --border: 0.26 0.02 260;
+    --input: 0.26 0.02 260;
+    --ring: 0.82 0.19 145;
+    --sidebar: 0.14 0.01 260;
+    --sidebar-foreground: 0.9 0.01 260;
+    --sidebar-primary: 0.82 0.19 145;
+    --sidebar-primary-foreground: 0.12 0.008 260;
+    --sidebar-accent: 0.2 0.015 260;
+    --sidebar-accent-foreground: 0.9 0.01 260;
+    --sidebar-border: 0.26 0.02 260;
+    --sidebar-ring: 0.82 0.19 145;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background font-body text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  /* Floating button — continuous gentle bob */
+  .animate-float {
+    animation: float 3.5s ease-in-out infinite;
+  }
+
+  /* Hover lift + glow for buttons and cards */
+  .lift-glow {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s
+      cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .lift-glow:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -8px oklch(0.82 0.19 145 / 0.45);
+  }
+
+  .lift-glow:focus-visible {
+    outline: 2px solid oklch(0.82 0.19 145);
+    outline-offset: 2px;
+  }
+
+  /* Gradient text accent */
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Ambient glow orb */
+  .glow-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  /* Section label eyebrow */
+  .eyebrow {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-fade-up {
+    animation: none;
+  }
+}
